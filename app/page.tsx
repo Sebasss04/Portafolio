@@ -1,59 +1,75 @@
 import { projects } from "@/data/projects";
-import { ProjectCard } from "@/components/project-card";
 
 export default function Home() {
+  const featured = projects.slice(0, 4);
+
   return (
     <main>
       <header className="nav shell">
         <a className="brand" href="#inicio"><span>SS</span><strong>Sebastian Saavedra</strong></a>
         <nav>
-          <a href="#soluciones">Soluciones</a>
           <a href="#proyectos">Proyectos</a>
-          <a href="#sobre-mi">Sobre mí</a>
-          <a className="nav-cta" href="#contacto">Hablemos</a>
+          <a href="#perfil">Perfil</a>
+          <a className="nav-cta" href="#contacto">Contacto</a>
         </nav>
       </header>
 
       <section id="inicio" className="hero shell">
         <div className="hero-copy">
-          <div className="availability"><i /> Disponible para nuevos proyectos</div>
-          <h1>Construyo experiencias digitales que <em>funcionan de verdad.</em></h1>
-          <p>Desarrollo soluciones web, sistemas y proyectos de infraestructura con foco en simplicidad, rendimiento y una experiencia clara para el usuario.</p>
+          <span className="kicker">WEB · SISTEMAS · INFRAESTRUCTURA</span>
+          <h1>Construyo productos digitales <em>claros, útiles y funcionales.</em></h1>
+          <p>Portfolio personal y laboratorio de soluciones listas para convertirse en proyectos reales.</p>
           <div className="hero-actions">
-            <a className="primary" href="#soluciones">Explorar soluciones <span>→</span></a>
+            <a className="primary" href="#proyectos">Ver proyectos <span>→</span></a>
             <a className="secondary" href="https://github.com/Sebasss04">GitHub <span>↗</span></a>
           </div>
         </div>
-        <aside className="hero-panel">
-          <div className="terminal-bar"><span/><span/><span/><b>portfolio / overview</b></div>
-          <div className="metric"><span>Enfoque</span><strong>Web · Sistemas · Infraestructura</strong></div>
-          <div className="metric-grid">
-            <div><span>Productos</span><strong>02</strong><small>vendibles</small></div>
-            <div><span>Proyectos</span><strong>04+</strong><small>documentados</small></div>
-          </div>
-          <div className="signal"><i/><span>Construyendo una base reutilizable para nuevos clientes.</span></div>
-        </aside>
-      </section>
-
-      <section id="soluciones" className="section shell">
-        <div className="section-head"><div><span className="section-index">01 / SOLUCIONES</span><h2>Productos listos para adaptar.</h2></div><p>Ideas convertidas en demos funcionales que un cliente puede probar antes de invertir.</p></div>
-        <div className="solution-grid">
-          <article className="solution-card featured"><div className="card-number">01</div><div><span className="tag">PRÓXIMA DEMO</span><h3>Booking para negocios</h3><p>Agenda, disponibilidad, servicios, profesionales y confirmaciones desde una experiencia simple.</p></div><div className="solution-footer"><span>Barberías · Estilistas · Spa</span><a href="#proyectos">Ver avance →</a></div></article>
-          <article className="solution-card"><div className="card-number">02</div><div><span className="tag">REUTILIZABLE</span><h3>Catálogo comercial</h3><p>Productos, categorías y pedidos rápidos por WhatsApp para negocios que todavía no necesitan e-commerce completo.</p></div><div className="solution-footer"><span>Retail · Emprendimientos</span><a href="#proyectos">Ver proyecto →</a></div></article>
+        <div className="hero-visual" aria-hidden="true">
+          <div className="visual-grid" />
+          <div className="visual-card visual-card-a"><span>01</span><strong>Booking</strong></div>
+          <div className="visual-card visual-card-b"><span>02</span><strong>Web products</strong></div>
+          <div className="visual-label">Selected work / 2026</div>
         </div>
       </section>
 
       <section id="proyectos" className="section shell">
-        <div className="section-head"><div><span className="section-index">02 / PROYECTOS</span><h2>Trabajo que demuestra capacidad.</h2></div><p>No solo código: cada proyecto documenta el problema, decisiones, arquitectura y resultado.</p></div>
-        <div className="project-grid">{projects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div>
+        <div className="section-title-row">
+          <div><span className="section-index">01 / SELECTED WORK</span><h2>Proyectos destacados</h2></div>
+          <a href="https://github.com/Sebasss04">Ver GitHub ↗</a>
+        </div>
+        <div className="showcase-grid">
+          {featured.map((project, index) => (
+            <article className={`showcase-card card-${index + 1}`} key={project.slug}>
+              <div className="project-visual">
+                <span className="project-number">0{index + 1}</span>
+                <div className="project-screen">
+                  <span>{project.eyebrow}</span>
+                  <strong>{project.title}</strong>
+                </div>
+              </div>
+              <div className="project-meta">
+                <div><h3>{project.title}</h3><p>{project.stack.slice(0, 3).join(" · ")}</p></div>
+                <a href={project.demoUrl || project.repoUrl || "#contacto"} aria-label={`Abrir ${project.title}`}>↗</a>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="sobre-mi" className="section shell about">
-        <div><span className="section-index">03 / PERFIL</span><h2>Desarrollo con criterio técnico y comercial.</h2></div>
-        <div className="about-copy"><p>Me interesa construir productos que puedan mostrarse, reutilizarse y convertirse en soluciones reales para clientes. Este portfolio funciona como laboratorio, catálogo y registro de evolución.</p><div className="capabilities"><span>Frontend</span><span>Backend</span><span>Networking</span><span>Infraestructura</span><span>Git / GitHub</span><span>Self-hosting</span></div></div>
+      <section id="perfil" className="profile shell">
+        <span className="section-index">02 / PERFIL</span>
+        <div className="profile-grid">
+          <h2>Diseño, desarrollo y criterio técnico en un mismo flujo.</h2>
+          <div><p>Construyo soluciones web y proyectos de sistemas con foco en simplicidad, rendimiento y utilidad real.</p><div className="capabilities"><span>Frontend</span><span>Backend</span><span>Git</span><span>Networking</span><span>Infraestructura</span></div></div>
+        </div>
       </section>
 
-      <section id="contacto" className="cta shell"><span>¿TIENES UNA IDEA?</span><h2>Podemos convertirla en una demo funcional.</h2><a href="mailto:contacto@example.com">Empezar conversación <span>↗</span></a></section>
+      <section id="contacto" className="cta shell">
+        <span>¿TIENES UN PROYECTO?</span>
+        <h2>Hagamos algo que se pueda mostrar, usar y vender.</h2>
+        <a href="https://github.com/Sebasss04">Contactar <span>↗</span></a>
+      </section>
+
       <footer className="footer shell"><span>© 2026 Sebastian Saavedra</span><span>Santa Cruz · Bolivia</span><a href="https://github.com/Sebasss04">GitHub ↗</a></footer>
     </main>
   );
