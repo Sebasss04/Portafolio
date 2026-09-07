@@ -8,7 +8,10 @@ export type Project = {
   kind: ProjectKind;
   status: "Demo" | "En desarrollo" | "Documentado";
   stack: string[];
+  featured?: boolean;
   demoUrl?: string;
   repoUrl?: string;
-  featured?: boolean;
+  problem: string;
+  solution: string;
+  features: string[];
 };
