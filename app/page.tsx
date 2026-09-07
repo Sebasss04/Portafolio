@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { projects } from "@/data/projects";
 
 export default function Home() {
-  const featured = projects.slice(0, 4);
+  const featured = projects.filter((project) => project.featured).slice(0, 4);
 
   return (
     <main>
@@ -26,30 +27,32 @@ export default function Home() {
         </div>
         <div className="hero-visual" aria-hidden="true">
           <div className="visual-grid" />
-          <div className="visual-card visual-card-a"><span>01</span><strong>Booking</strong></div>
-          <div className="visual-card visual-card-b"><span>02</span><strong>Web products</strong></div>
+          <div className="visual-card visual-card-a"><span>01</span><strong>Demos vendibles</strong></div>
+          <div className="visual-card visual-card-b"><span>02</span><strong>Proyectos reales</strong></div>
           <div className="visual-label">Selected work / 2026</div>
         </div>
       </section>
 
       <section id="proyectos" className="section shell">
         <div className="section-title-row">
-          <div><span className="section-index">01 / SELECTED WORK</span><h2>Proyectos destacados</h2></div>
+          <div><span className="section-index">01 / SELECTED WORK</span><h2>Demos y proyectos destacados</h2></div>
           <a href="https://github.com/Sebasss04">Ver GitHub ↗</a>
         </div>
         <div className="showcase-grid">
           {featured.map((project, index) => (
             <article className={`showcase-card card-${index + 1}`} key={project.slug}>
-              <div className="project-visual">
-                <span className="project-number">0{index + 1}</span>
-                <div className="project-screen">
-                  <span>{project.eyebrow}</span>
-                  <strong>{project.title}</strong>
+              <Link href={`/proyectos/${project.slug}`} className="project-visual-link" aria-label={`Ver ${project.title}`}>
+                <div className="project-visual">
+                  <span className="project-number">0{index + 1}</span>
+                  <div className="project-screen">
+                    <span>{project.eyebrow}</span>
+                    <strong>{project.title}</strong>
+                  </div>
                 </div>
-              </div>
+              </Link>
               <div className="project-meta">
                 <div><h3>{project.title}</h3><p>{project.stack.slice(0, 3).join(" · ")}</p></div>
-                <a href={project.demoUrl || project.repoUrl || "#contacto"} aria-label={`Abrir ${project.title}`}>↗</a>
+                <Link href={`/proyectos/${project.slug}`} aria-label={`Abrir ${project.title}`}>→</Link>
               </div>
             </article>
           ))}
@@ -67,7 +70,7 @@ export default function Home() {
       <section id="contacto" className="cta shell">
         <span>¿TIENES UN PROYECTO?</span>
         <h2>Hagamos algo que se pueda mostrar, usar y vender.</h2>
-        <a href="https://github.com/Sebasss04">Contactar <span>↗</span></a>
+        <a href="https://github.com/Sebasss04">Ver perfil y contacto <span>↗</span></a>
       </section>
 
       <footer className="footer shell"><span>© 2026 Sebastian Saavedra</span><span>Santa Cruz · Bolivia</span><a href="https://github.com/Sebasss04">GitHub ↗</a></footer>
