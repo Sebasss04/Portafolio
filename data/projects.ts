@@ -28,6 +28,20 @@ export const projects: Project[] = [
     features: ["Catálogo por categorías", "Carrito ligero", "Pedido por WhatsApp", "Diseño mobile-first", "Adaptable a distintos negocios"]
   },
   {
+    slug: "chatarreria-el-norte",
+    title: "Chatarrería El Norte",
+    eyebrow: "Proyecto web",
+    summary: "Sitio web desarrollado para presentar servicios, información del negocio y una experiencia más profesional en línea.",
+    kind: "personal",
+    status: "Documentado",
+    stack: ["Web", "Responsive", "GitHub"],
+    featured: true,
+    repoUrl: "https://github.com/Sebasss04/Chatarreria-el-Norte",
+    problem: "Un negocio necesita comunicar sus servicios de forma clara y transmitir confianza sin depender únicamente de redes sociales o mensajería.",
+    solution: "Una presencia web directa, adaptable a dispositivos y organizada para que el visitante entienda rápidamente el negocio y pueda avanzar al contacto.",
+    features: ["Sitio responsive", "Presentación de servicios", "Información comercial", "Código versionado con Git", "Base adaptable"]
+  },
+  {
     slug: "infraestructura-la-roca",
     title: "Infraestructura La Roca",
     eyebrow: "Proyecto universitario",
